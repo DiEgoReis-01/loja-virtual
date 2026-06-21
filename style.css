@@ -11,7 +11,10 @@ body {
 
 .header {
     background-color: black;
-    padding: 10px 0;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 2;
 }
 
 .logo {
@@ -27,18 +30,22 @@ body {
     display: flex;
     justify-content: center;
 }
+
 .search {
     gap: 5px;
     margin-top: 24px;
+    display: flex;
+    flex-wrap: nowrap;
+    height: 30px;
 }
 
 .search-input {
-    flex: 1;
     padding: 5px;
     border: none;
     border-radius: 5px;
     font-size: 16px;
     width: 100vh;
+    min-width: 0;
 }
 
 .search-btn {
@@ -49,6 +56,7 @@ body {
     font-size: 18px;
     padding: 4px 5px;
     outline: none;
+    flex-shrink: 0;
 }
 
 .search-btn:hover {
@@ -117,21 +125,63 @@ body {
 }
 
 .hero {
-    background-image: url(img/banner.jpg);
+    margin-top: 25px;
     background-size: cover;
     background-position: center;
-    height: 600px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: end;
-    padding-bottom: 20px;
-    color: #3C455C;
+    width: 100vw;
+    height: 800px;
+    object-fit: contain;
+    animation: trocarBackground 96s infinite linear;
+    transition: 0.5s;
 }
 
-.hero h1 {
-    font-weight: 800;
-    margin-bottom: 10px;
+@keyframes trocarBackground {
+    0% {
+        background-image: url(img/banner1.jpg);
+    }
+    32% {
+        background-image: url(img/banner1.jpg);
+    }
+    35% {
+        background-image: url(img/banner2.jpg);
+    }
+    65% {
+        background-image: url(img/banner2.jpg);
+    }
+    68% {
+        background-image: url(img/banner3.jpg);
+    }
+    97% {
+        background-image: url(img/banner3.jpg);
+    }
+    100% {
+        background-image: url(img/banner1.jpg);
+    }
+}
+
+.navigation-buttons {
+    padding-top: 10px;
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.search-button {
+    font-size: 16px;
+    background-color: transparent;
+    border: none;
+    font-weight: bold;
+    color: black;
+    padding: 5px 10px 0;
+    transition: 0.3s;
+}
+
+.search-button:hover {
+    background-color: #00000045;
+    cursor: pointer;
 }
 
 .footer {
@@ -149,4 +199,18 @@ body {
 }
 .footer:hover {
     text-decoration: underline;
+}
+
+@media screen and (max-width: 768px){
+    .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .hero {
+        height: 300px;
+    }
+
+    .search-input {
+        width: 100%;
+    }
 }

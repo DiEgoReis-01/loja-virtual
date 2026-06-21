@@ -25,7 +25,7 @@ const products = [
 
     {
         id: 4,
-        title: "Calca cargo masculina",
+        title: "Calça cargo masculina",
         price: 127.99, 
         discount: 10,
         image: "img/calcaCargo.jpg",
@@ -82,8 +82,33 @@ function searchProducts(){
     renderProduct(filteredProducts)
 }
 
+function navigationBar(){
+    const buttons = document.querySelectorAll('.search-button')
+
+    buttons.forEach(button =>{
+        button.addEventListener('click', () => {
+        const buttonText = button.textContent.toLowerCase()
+
+        if (buttonText === "tudo") {
+            renderProduct(products)
+            return
+        }
+
+        const filteredProducts = products.filter( product => product.title.toLowerCase().includes(buttonText) )
+        renderProduct(filteredProducts)
+    })
+    })
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     renderProduct(products)
+    navigationBar()
 
     document.getElementById('searchBtn').addEventListener('click', searchProducts)
+    document.getElementById('searchInput').addEventListener('keydown', (event) => {
+        if (event.key === "Enter"){
+            searchProducts()
+        }
+    })
+
 })
